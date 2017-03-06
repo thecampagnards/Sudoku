@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Sudoku</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="message_victoire">Vous avez réussi !</string>
+    <string name="partie_random">Partie aléatoire</string>
+
+    <string name="title_activity_sudoku">SudokuActivity</string>
+    <string name="partie_api">Récupérer une grille</string>
+    <string name="partie_api_code">Code</string>
+    <string name="partie_api_code_error">Un code est requis !</string>
+    <string name="erreur_api">Erreur lors de la connexion à l\'api</string>
+</resources>
