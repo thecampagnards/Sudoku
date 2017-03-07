@@ -22,17 +22,17 @@ public class SudokuGridView extends GridView {
         super(context,attrs);
 
         this.context = context;
-
+        // on lui ajoute notre adapter
         SudokuGridViewAdapter gridViewAdapter = new SudokuGridViewAdapter(context);
-
         setAdapter(gridViewAdapter);
 
+        // on ajoute un onclick sur la grille
         setOnItemClickListener(new OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int x = position % 9;
                 int y = position / 9;
+                // on envoi les position à notre gameengine pour trouver la case selectionnée
                 GameEngine.getInstance().setSelectedPosition(x, y);
             }
         });
@@ -53,6 +53,7 @@ public class SudokuGridView extends GridView {
 
         @Override
         public int getCount() {
+            // nombre d'element 9*9
             return 81;
         }
 
@@ -68,6 +69,7 @@ public class SudokuGridView extends GridView {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            // on retourne la valeur de la cellule en fonction de la position
             return GameEngine.getInstance().getGrid().getItem(position);
         }
     }

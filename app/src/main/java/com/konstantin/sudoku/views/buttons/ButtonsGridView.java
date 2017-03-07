@@ -1,6 +1,5 @@
 package com.konstantin.sudoku.views.buttons;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -15,12 +14,13 @@ import com.konstantin.sudoku.R;
  * Created by konstantin on 13/02/17.
  */
 
+// notre grille de bouton
 public class ButtonsGridView extends GridView {
+
     public ButtonsGridView( Context context , AttributeSet attrs ){
         super(context , attrs);
-
+        // on lui ajoute notre adapteur
         ButtonsGridViewAdapter gridViewAdapter = new ButtonsGridViewAdapter(context);
-
         setAdapter(gridViewAdapter);
     }
 
@@ -52,9 +52,11 @@ public class ButtonsGridView extends GridView {
             View v = convertView;
 
             if( v == null ){
+                // on recupere notre bouton
                 v = LayoutInflater.from(context).inflate(R.layout.button, parent , false);
 
                 NumberButton btn;
+                // on cast notre bouton en number
                 btn = (NumberButton)v;
                 btn.setTextSize(10);
                 btn.setId(position);
@@ -63,6 +65,7 @@ public class ButtonsGridView extends GridView {
                     btn.setText(String.valueOf(position + 1));
                     btn.setNumber(position + 1);
                 }else{
+                    // on ajoute notre bouton supp à 0
                     btn.setText(context.getString(R.string.supprimer));
                     btn.setNumber(0);
                 }

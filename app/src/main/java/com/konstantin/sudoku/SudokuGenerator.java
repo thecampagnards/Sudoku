@@ -8,12 +8,12 @@ import java.util.Random;
  */
 
 public class SudokuGenerator {
+
     private static SudokuGenerator instance;
-
     private ArrayList<ArrayList<Integer>> Available = new ArrayList<ArrayList<Integer>>();
-
     private Random rand = new Random();
 
+    // encore un singleton car pas besoin de plusieurs instances
     private SudokuGenerator(){}
 
     public static SudokuGenerator getInstance(){
@@ -24,28 +24,33 @@ public class SudokuGenerator {
     }
 
     public int[][] generateGrid(){
+
+        // methode pour generer une grille
         int[][] Sudoku = new int[9][9];
-
         int currentPos = 0;
-
+        // on netoye notre grille etc
+        clearGrid(Sudoku);
 
         while( currentPos < 81 ){
-            if( currentPos == 0 ){
-                clearGrid(Sudoku);
-            }
 
+            // si la case est valide
             if( Available.get(currentPos).size() != 0 ){
+
+                // on genere un nouyeau  nombre aleatoire d'une case du tableau
                 int i = rand.nextInt(Available.get(currentPos).size());
+                // on recupere la valeur de la case du tableau
                 int number = Available.get(currentPos).get(i);
 
+                // si pas de conflit
                 if( !checkConflict(Sudoku, currentPos , number)){
                     int xPos = currentPos % 9;
                     int yPos = currentPos / 9;
 
+                    // on mets dans notre grille le nombre
                     Sudoku[xPos][yPos] = number;
 
                     Available.get(currentPos).remove(i);
-
+                    // on passe à la case suivante
                     currentPos++;
                 }else{
                     Available.get(currentPos).remove(i);
@@ -79,6 +84,8 @@ public class SudokuGenerator {
 
     }
 
+    // methode pour supprimer des elements de notre grille
+    // utilisé apres la generation de la grille
     public int[][] removeElements( int[][] Sudoku , int nb){
         int i = 0;
 
@@ -95,6 +102,7 @@ public class SudokuGenerator {
 
     }
 
+    // methode pour netoyer l'ensemble
     private void clearGrid(int [][] Sudoku){
         Available.clear();
 
@@ -112,6 +120,7 @@ public class SudokuGenerator {
         }
     }
 
+    // ensemble des methodes pour check le sudoku
     private boolean checkConflict( int[][] Sudoku , int currentPos , final int number){
         int xPos = currentPos % 9;
         int yPos = currentPos / 9;
@@ -123,14 +132,6 @@ public class SudokuGenerator {
         return false;
     }
 
-    /**
-     * Return true si il y a un conflit
-     * @param Sudoku
-     * @param xPos
-     * @param yPos
-     * @param number
-     * @return
-     */
     private boolean checkHorizontalConflict( final int[][] Sudoku , final int xPos , final int yPos , final int number ){
         for( int x = xPos - 1; x >= 0 ; x-- ){
             if( number == Sudoku[x][yPos]){

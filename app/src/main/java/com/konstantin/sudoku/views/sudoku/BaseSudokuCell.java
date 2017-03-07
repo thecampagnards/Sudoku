@@ -7,6 +7,7 @@ import android.view.View;
  * Created by konstantin on 13/02/17.
  */
 
+// notre cellule de base printable
 public class BaseSudokuCell extends View {
 
     private int value;
@@ -59,8 +60,4 @@ public class BaseSudokuCell extends View {
         return value;
     }
 
-    //@TODO check pour les regions
-    public void checkRegion(){
-        //if(this.getContext().)
-    }
 }
