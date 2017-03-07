@@ -9,6 +9,7 @@ public class SudokuChecker {
 
     private SudokuChecker(){}
 
+    // pareil ici besoin que d'une seule instance de notre checker
     public static SudokuChecker getInstance(){
         if( instance == null ){
             instance = new SudokuChecker();
@@ -16,10 +17,12 @@ public class SudokuChecker {
         return instance;
     }
 
+    // on check la totale
     public boolean checkSudoku( int[][] Sudoku){
         return (checkHorizontal(Sudoku) || checkVertical(Sudoku) || checkRegions(Sudoku));
     }
 
+    // inspiré via le site du zéro
     private boolean checkHorizontal(int[][] Sudoku) {
         for( int y = 0 ; y < 9 ; y++ ){
             for( int xPos = 0 ; xPos < 9 ; xPos++ ){
