@@ -23,8 +23,15 @@
             android:id="@+id/buttonsGridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/sudokuGridView"
+            android:layout_below="@+id/Chronometer"
             android:numColumns="6">
         </com.konstantin.sudoku.views.buttons.ButtonsGridView>
+
+        <Chronometer
+            android:id="@+id/Chronometer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sudokuGridView"
+            />
 
 </RelativeLayout>
